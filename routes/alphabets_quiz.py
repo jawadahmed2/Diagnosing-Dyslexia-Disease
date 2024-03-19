@@ -8,7 +8,7 @@ import io
 
 alphabets_routes = Blueprint("alphabets_routes", __name__)
 
-UPLOAD_FOLDER = "static/images/input"
+UPLOAD_FOLDER = "static/images/input/alphabets"
 alphabets_routes.config = dict()
 alphabets_routes.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
@@ -18,8 +18,8 @@ def main_page():
     return render_template("alphabetical_quiz.html")
 
 
-@alphabets_routes.route("/upload", methods=["POST"])
-def upload():
+@alphabets_routes.route("/upload-alphabets", methods=["POST"])
+def upload_alphabets():
     if request.method == "POST":
         # Get the image data from the POST request
         img_data = request.form["img_data"]
@@ -38,7 +38,7 @@ def upload():
         return "Image saved successfully"
 
 
-@alphabets_routes.route("/images/input/<filename>")
+@alphabets_routes.route("/images/input/alphabets/<filename>")
 def uploaded_file(filename):
     return send_from_directory(alphabets_routes.config["UPLOAD_FOLDER"], filename)
 

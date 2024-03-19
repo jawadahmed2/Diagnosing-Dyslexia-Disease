@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alphabetical Quiz</title>
+    <title>Words Quiz</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/alphabetical_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/words_style.css') }}">
 </head>
 
 <body>
@@ -15,11 +15,11 @@
     <div class="container">
         <div class="bg-container p-4 rounded shadow-md">
 
-            <h2 class="quiz-title text-2xl font-bold mb-4 text-center">Alphabetical Quiz</h2>
+            <h2 class="quiz-title text-2xl font-bold mb-4 text-center">Words Quiz</h2>
 
             <!-- Display the question number counter with CSS styles -->
             <div id="counter" class="counter">1/10</div>
-            
+
             <img src="{{ url_for('static', filename='images/background/audio.png') }}" alt="Speaker Icon"
                 class="speaker-icon">
 
@@ -43,7 +43,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="{{ url_for('static', filename='script/alphabetical_script.js') }}"></script>
+    <script src="{{ url_for('static', filename='script/words_script.js') }}"></script>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const alphabet = "Cat Dog Apple Lion Hat Ice Juice Nest Tiger Snake Orange Queen Zebra Friends Clouds Sky Blue Bird Sun Stars Person Pakistan Islamabad Boys School Cricket Football Mobile Laptop";
     let currentQuestionIndex = 0;
 
     // Randomly select 10 alphabets for questions
@@ -9,13 +9,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const context = canvas.getContext("2d");
 
     function getRandomQuestions(alphabet, count) {
-        const shuffledAlphabet = alphabet.split("").sort(() => Math.random() - 0.5);
+        const shuffledAlphabet = alphabet.split(" ").sort(() => Math.random() - 0.5);
         return shuffledAlphabet.slice(0, count);
     }
 
     function displayQuestion(index) {
         const questionTextElement = document.getElementById("questionText");
-        questionTextElement.textContent = `Write an alphabet :  ${questions[index]}`;
+        questionTextElement.textContent = `Write a word :  ${questions[index]}`;
         questionTextElement.classList.add("question-text");
     }
 
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const dataUrl = canvas.toDataURL();
         console.log(dataUrl);
 
-        fetch("/upload", {
+        fetch("/upload-words", {
             method: "POST",
             body: new URLSearchParams({
                 img_data: dataUrl

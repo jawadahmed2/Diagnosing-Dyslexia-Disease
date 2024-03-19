@@ -8,7 +8,7 @@ import io
 
 words_routes = Blueprint("words_routes", __name__)
 
-UPLOAD_FOLDER = "static/images/input"
+UPLOAD_FOLDER = "static/images/input/words"
 words_routes.config = dict()
 words_routes.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
@@ -18,8 +18,8 @@ def main_page():
     return render_template("words_quiz.html")
 
 
-@words_routes.route("/upload", methods=["POST"])
-def upload():
+@words_routes.route("/upload-words", methods=["POST"])
+def upload_words():
     if request.method == "POST":
         # Get the image data from the POST request
         img_data = request.form["img_data"]
@@ -38,7 +38,7 @@ def upload():
         return "Image saved successfully"
 
 
-@words_routes.route("/images/input/<filename>")
+@words_routes.route("/images/input/words/<filename>")
 def uploaded_file(filename):
     return send_from_directory(words_routes.config["UPLOAD_FOLDER"], filename)
 

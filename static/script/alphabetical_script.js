@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const dataUrl = canvas.toDataURL();
         console.log(dataUrl);
 
-        fetch("/upload", {
+        fetch("/upload-alphabets", {
             method: "POST",
             body: new URLSearchParams({
                 img_data: dataUrl
