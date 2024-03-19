@@ -1,0 +1,1 @@
+// static/script/home.js
