@@ -46,15 +46,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function draw(e) {
         if (!drawing) return;
+
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
         context.lineWidth = 10;
         context.lineCap = "round";
         context.strokeStyle = "#000";
 
-        context.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+        context.lineTo(mouseX, mouseY);
         context.stroke();
         context.beginPath();
-        context.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+        context.moveTo(mouseX, mouseY);
     }
+
 
     displayQuestion(currentQuestionIndex);
     displayAnswerCanvas();

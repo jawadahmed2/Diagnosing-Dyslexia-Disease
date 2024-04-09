@@ -1,13 +1,3 @@
-/* CSS */
-body {
-    background-image: url('../images/background/alphabetical.jpg');
-    background-size: cover;
-    background-position: center top; /* Adjusted to move the background image downward */
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    color: #333; /* Text color */
-}
-
-
 .quiz-title {
     font-family: "Comic Sans MS", cursive, sans-serif; /* Playful font */
     color: #2d211a; /* Bright orange color */
@@ -16,11 +6,10 @@ body {
 }
 
 
-.container {
-    display: flex;
+.container-canvas {
     justify-content: center;
     align-items: center;
-    height: 100vh;
+
 }
 
 .bg-container {

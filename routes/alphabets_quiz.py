@@ -15,7 +15,7 @@ alphabets_routes.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 @alphabets_routes.route("/alphabets")
 def main_page():
-    return render_template("alphabetical_quiz.html")
+    return render_template("alphabetical.html")
 
 
 @alphabets_routes.route("/upload-alphabets", methods=["POST"])

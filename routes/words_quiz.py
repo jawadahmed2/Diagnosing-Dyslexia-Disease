@@ -15,7 +15,7 @@ words_routes.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 @words_routes.route("/words")
 def main_page():
-    return render_template("words_quiz.html")
+    return render_template("words.html")
 
 
 @words_routes.route("/upload-words", methods=["POST"])

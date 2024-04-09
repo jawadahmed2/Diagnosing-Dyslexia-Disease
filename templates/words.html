@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Awaiken Theme">
+
+    <!-- Page Title -->
+    <title>Diagnosing Dyslexia</title>
+    <!-- Google Fonts css-->
+    <link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans|Roboto:300,400,500,700,900" rel="stylesheet">
+    <!-- Bootstrap css -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+    <!-- Font Awesome icon css-->
+    <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ url_for('static', filename='css/flaticon.css') }}" rel="stylesheet" media="screen">
+    <!-- Swiper's CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/swiper.min.css') }}">
+    <!-- Animated css -->
+    <link href="{{ url_for('static', filename='css/animate.css') }}" rel="stylesheet ">
+    <!-- Magnific Popup CSS -->
+    <link href="{{ url_for('static', filename='css/magnific-popup.css') }}" rel="stylesheet">
+    <!-- Slick nav css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/slicknav.css') }}">
+    <!-- Main custom css -->
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet" media="screen">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/words_style.css') }}">
+</head>
+
+<body data-spy="scroll" data-target="#main-navbar" data-offset="71">
+    <!-- Tob Bar Section Start -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="header-social-link">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-8 text-right">
+                    <div class="school-info">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-envelope"></i> Email : abc@gmail.com</a></li>
+                            <li><a href="#"><i class="fa fa-phone"></i> Call : +92 311 0000000</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Tob Bar Section End -->
+
+    <!-- Header Section Start -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light" id="main-navbar">
+            <div class="container">
+                <!-- Navbar Brand start -->
+                <a class="navbar-brand" href="#">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4ri7HScuhOfDAuAb_yY7P0I4NgbqHauJk2mJSLFci&s"
+                        alt="Dyslexia Logo" style="margin-left: -150px;" />
+                </a>
+                <!-- Navbar Brand end -->
+
+                <ul class="navbar-nav ml-auto" id="main-menu">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#activities">Word Quiz</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#courses">Result</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#teachers">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home_routes.main_page') }}">Go Back To
+                            Main</a></li>
+
+                </ul>
+
+                <div class="navbar-toggle"></div>
+                <div id="responsive-menu"></div>
+            </div>
+        </nav>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Banner Slider Section starts -->
+    <div class="banner-slider" id="home">
+        <div class="container-fluid">
+            <div class="row no-gutters">
+                <div class="col-md-12">
+                    <div class="swiper-container banner-slider">
+                        <div class="swiper-wrapper">
+                            <!-- Header Slide start -->
+                            <div class="swiper-slide">
+                                <div class="banner-slide">
+                                    <figure>
+                                        <img src="{{ url_for('static', filename='images/slide-3.jpg') }}">
+                                    </figure>
+
+                                    <div class="banner-slide-overlay" data-swiper-animation="zoomIn" data-duration="1s"
+                                        data-delay="0.5s">
+                                        <h2 class="color-blue" data-swiper-animation="fadeInDown" data-duration="1s"
+                                            data-delay="1.5s">Conducting Word Quiz </h2>
+                                        <a href="#activities" class="btn-slider" data-swiper-animation="fadeInUp"
+                                            data-duration="1s" data-delay="2.5s">Swipe Below !</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Header Slide end -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner Slider Section ends -->
+
+    <!-- Alphabetical Quiz Starts -->
+    <section class="our-activities" id="activities">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Section title start -->
+                    <div class="section-title wow fadeInUp">
+                        <h2 class="color-orange">Words Quiz</h2>
+                        <p>Following are some of the random Words try to write it down and submit each of them
+                            after writing at down.</p>
+                    </div>
+                    <!-- Section title end -->
+                </div>
+            </div>
+
+            <div class="row justify-content-center"> <!-- Align columns to the right -->
+                <!-- HTML -->
+                <div class="col-md-6">
+                    <div class="container-canvas">
+                        <div class="bg-container p-4 rounded shadow-md">
+
+                            <!-- Display the question number counter with CSS styles -->
+                            <div id="counter" class="counter">1/10</div>
+
+                            <img src="{{ url_for('static', filename='images/background/audio.png') }}"
+                                alt="Speaker Icon" class="speaker-icon">
+
+                            <h3 class="mb-4" id="questionText"></h3>
+
+                            <div class="canvas-container">
+                                <canvas id="canvas"></canvas>
+                            </div>
+
+
+                            <div class="text-center mt-4">
+                                <button id="prevBtn" class="btn btn-secondary mr-2">Previous</button>
+                                <button id="submitBtn" class="btn btn-primary mr-2">Submit</button>
+                                <button id="nextBtn" class="btn btn-secondary">Next</button>
+                                <button id="clearBtn" class="btn btn-danger">Clear</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Activities Section Ends -->
+
+    <!-- Our Courses Section Starts -->
+    <section class="courses" id="courses">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Section title start -->
+                    <div class="section-title">
+                        <h2 class="color-orange">Overall Result Of Words Quiz</h2>
+                        <p>Below is the detail result of the word quiz conducted</p>
+                    </div>
+                    <!-- Section title end -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <!-- Course Single Start -->
+
+                    <!-- Course Single end -->
+                </div>
+
+                <div class="col-lg-4">
+                    <!-- Course Single Start -->
+
+                    <!-- Course Single End -->
+                </div>
+
+                <div class="col-lg-4">
+                    <!-- Course Single Start -->
+
+                    <!-- Course Single End -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Our Courses Section Ends -->
+
+
+    <!-- Faculty Section starts -->
+    <section class="faculty" id="teachers">
+        <div class="container">
+            <div class="row">
+            </div>
+        </div>
+    </section>
+    <!-- Faculty Section Ends -->
+
+    <!-- About us Section Starts -->
+    <section class="about-us" id="teachers">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Section title start -->
+                    <div class="section-title">
+                        <h2 class="color-orange">About Us</h2>
+                        <p>We are a dedicated team passionate about leveraging cutting-edge technology to address
+                            real-world challenges. Our project focuses on using advanced machine learning and deep
+                            learning techniques to tackle dyslexia, a common learning disorder affecting individuals'
+                            ability to read and comprehend text. By harnessing the power of artificial intelligence, we
+                            aim to develop innovative solutions for early detection and intervention, ultimately
+                            improving the lives of those affected by dyslexia. Our interdisciplinary team comprises
+                            experts in machine learning, neuroscience, and education, united by a shared commitment to
+                            making a positive impact in the field of neurodevelopmental disorders. With a data-driven
+                            approach and a focus on accessibility and inclusivity, we strive to empower individuals with
+                            dyslexia and their communities through technology-driven solutions.</p>
+                    </div>
+                    <!-- Section title end -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <!-- About Image Start -->
+                    <div class="about-image wow fadeInLeft" data-wow-delay="0.3s">
+                        <img src="{{ url_for('static', filename='images/about.jpg') }}" />
+                    </div>
+                    <!-- About Image End -->
+                </div>
+
+                <div class="col-md-8">
+                    <!-- About Content Start -->
+                    <div class="about-content wow fadeInUp" data-wow-delay="0.6s">
+                        <h3>Our Philosophy</h3>
+
+                        <p>At the heart of our project lies a profound belief in the transformative power of technology
+                            to drive positive change in society. We believe that every individual, regardless of their
+                            cognitive differences, deserves access to inclusive and personalized learning experiences.
+                            Our philosophy is rooted in empathy, understanding, and a commitment to harnessing the
+                            latest advancements in artificial intelligence and machine learning to address complex
+                            challenges such as dyslexia. We prioritize collaboration, innovation, and evidence-based
+                            practices, working hand in hand with educators, researchers, and individuals with dyslexia
+                            to co-create solutions that are effective, accessible, and empowering. Through continuous
+                            learning, adaptation, and a dedication to ethical and responsible use of technology, we
+                            strive to make meaningful contributions to the field of neurodevelopmental disorders, paving
+                            the way for a more inclusive and equitable future for all.</p>
+                    </div>
+                    <!-- About Content End -->
+
+                    <!-- About Social Link Starts -->
+                    <div class="about-social-links">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                    </div>
+                    <!-- About Social Link Ends -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About us Section Ends -->
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='script/words_script.js') }}"></script>
+
+    <!-- Jquery Library File -->
+    <script src="{{ url_for('static', filename='script/jquery-1.12.4.min.js') }}"></script>
+    <!-- Bootstrap js file -->
+    <script src="{{ url_for('static', filename='script/bootstrap.min.js') }}"></script>
+    <!-- Wow js file -->
+    <script src="{{ url_for('static', filename='script/wow.js') }}"></script>
+    <!-- Swiper Carousel js file -->
+    <script src="{{ url_for('static', filename='script/swiper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='script/SwiperAnimation.min.js') }}"></script>
+    <!-- Magnific Popup core JS file -->
+    <script src="{{ url_for('static', filename='script/jquery.magnific-popup.min.js') }}"></script>
+    <!-- Slick Nav js file -->
+    <script src="{{ url_for('static', filename='script/jquery.slicknav.js') }}"></script>
+    <!-- SmoothScroll -->
+    <script src="{{ url_for('static', filename='script/SmoothScroll.js') }}"></script>
+    <!-- Main Custom js file -->
+    <script src="{{ url_for('static', filename='script/function.js') }}"></script>
+</body>
+
+</html>
