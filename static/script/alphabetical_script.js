@@ -75,6 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
             currentQuestionIndex--;
             displayQuestion(currentQuestionIndex);
             clearCanvas();
+            clearResult(); // Clear the result elements
             updateCounter();
         }
     });
@@ -84,9 +85,16 @@ document.addEventListener("DOMContentLoaded", function () {
             currentQuestionIndex++;
             displayQuestion(currentQuestionIndex);
             clearCanvas();
+            clearResult(); // Clear the result elements
             updateCounter();
         }
     });
+
+    // Function to clear the result elements
+    function clearResult() {
+        document.getElementById("resultLabel").textContent = "";
+        document.getElementById("resultScore").textContent = "";
+    }
 
     submitBtn.addEventListener("click", function () {
         const dataUrl = canvas.toDataURL();
@@ -104,17 +112,26 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => {
                 if (response.ok) {
                     console.log("Image saved successfully");
-                    // Optionally, you can perform additional actions after image is saved
+                    // Fetch result after image is saved
+                    return fetch("/alphabet-result");
                 } else {
                     console.error("Failed to save image");
                     // Optionally, handle error cases
                 }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update UI with received result
+                const { label, score } = data;
+                document.getElementById("resultLabel").textContent = `Label: ${label}`;
+                document.getElementById("resultScore").textContent = `Score: ${score}`;
             })
             .catch(error => {
                 console.error("Error occurred:", error);
                 // Optionally, handle error cases
             });
     });
+
 
     function updateCounter() {
         const counterElement = document.getElementById("counter");
