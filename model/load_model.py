@@ -115,24 +115,20 @@ class LoadModel:
         new_image[y_offset:y_offset+resized_original_image.shape[0],
                   x_offset:x_offset+resized_original_image.shape[1]] = resized_original_image
 
-        # Invert the colors (to make background black and text white)
-        inverted_image = cv2.bitwise_not(
-            cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY))
+        print(f'Image Shape: {new_image.shape}')
 
-        print(f'Image Shape: {inverted_image.shape}')
-
-        result = self.predictImage(inverted_image)
+        result = self.predictImage(new_image)
 
         return result
 
 
-if __name__ == "__main__":
-    model_load = LoadModel()
-    try:
-        print(model_load.user_input("imresizer-1711647452478.png"))
-    except FileNotFoundError as e:
-        print(e)
-    except ValueError as e:
-        print(e)
-    except Exception as e:
-        print("An error occurred:", e)
+# if __name__ == "__main__":
+#     model_load = LoadModel()
+#     try:
+#         print(model_load.user_input("imresizer-1711647452478.png"))
+#     except FileNotFoundError as e:
+#         print(e)
+#     except ValueError as e:
+#         print(e)
+#     except Exception as e:
+#         print("An error occurred:", e)
