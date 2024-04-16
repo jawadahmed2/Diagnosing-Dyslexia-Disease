@@ -1,46 +1,12 @@
 import numpy as np
 from PIL import Image
-from numpy import loadtxt
 from keras.models import load_model
 import numpy as np
 import cv2
-import pickle
 import os
 
 
 class LoadModel:
-    # def __init__(self) -> None:
-    #     main_dir = os.path.dirname(os.path.abspath(__file__))
-    #     model_path = os.path.join(main_dir, 'ensemble_model_weights.pkl')
-    #     # Check if the files exist
-    #     if not os.path.exists(model_path):
-    #         raise FileNotFoundError(f"Model file '{model_path}' not found.")
-    #     # Load the saved ensemble model
-    #     with open(model_path, 'rb') as f:
-    #         self.model = pickle.load(f)
-
-    # def predictImage(self, image):
-    #     if not os.path.exists(image):
-    #         raise FileNotFoundError(f"Image file '{image}' not found.")
-    #     pic = cv2.imread(image, 0)
-    #     if pic is None:
-    #         raise FileNotFoundError(f"Unable to open or read image file '{image}'.")
-    #     if pic.size == 0:
-    #         raise ValueError(f"Image file '{image}' has size 0.")
-    #     img = cv2.resize(pic, (112, 112))
-    #     img_flat = img.flatten().astype('float32') / 255.0
-    #     predicted_class = self.model.predict(img_flat.reshape(1, -1))
-    #     if predicted_class == 0:
-    #         return 'Normal', predicted_class
-    #     elif predicted_class == 1:
-    #         return "Correlated", predicted_class
-    #     elif predicted_class == 2:
-    #         return "Reversal", predicted_class
-
-    # def user_input(self, filename):
-    #     result = self.predictImage(filename)
-    #     return result
-
     def __init__(self) -> None:
         # Get the absolute path of the directory containing the main file
         main_dir = os.path.dirname(os.path.abspath(__file__))

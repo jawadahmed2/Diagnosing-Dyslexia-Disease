@@ -1,2 +1,0 @@
-# Diagnosing-Dyslexia-Disease
- 

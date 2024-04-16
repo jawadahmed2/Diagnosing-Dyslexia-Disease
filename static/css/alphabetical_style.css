@@ -76,6 +76,13 @@
     height: 300px !important;
 }
 
+.canvas-container pieChart {
+    width: 600px !important;
+    height: 600px !important;
+}
+
+
+
 #clearBtn {
     font-size: 18px;
     font-weight: bold;
@@ -140,4 +147,34 @@
     font-size: 24px; /* Larger font size */
     margin-top: 150px; /* Add margin to separate from other elements */
     margin-left:140px;
+}
+
+.green-text {
+    color: green;
+}
+
+.red-text {
+    color: red;
+}
+
+
+/* New styles for predicted_result and predicted_score */
+#predicted_result,
+#predicted_score {
+    font-family: "Comic Sans MS", cursive, sans-serif; /* Playful font */
+    font-size: 24px; /* Larger font size */
+    margin-top: 0px; /* Add margin to separate from other elements */
+}
+
+/* Positioning for predicted_result and predicted_score */
+#predicted_result {
+    position: relative;
+    top: 0px; /* Adjust as needed */
+    left: 80px; /* Adjust as needed */
+}
+
+#predicted_score {
+    position: relative;
+    top: 0px; /* Adjust as needed */
+    left: 80px; /* Adjust as needed */
 }

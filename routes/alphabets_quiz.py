@@ -10,6 +10,8 @@ from model.load_model import LoadModel
 deep_learning_model = LoadModel()
 
 alphabets_result = {}
+overall_result = {}
+piechart_data = {}
 
 
 alphabets_routes = Blueprint("alphabets_routes", __name__)
@@ -21,6 +23,10 @@ alphabets_routes.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 @alphabets_routes.route("/alphabets")
 def main_page():
+    # Reset dictionaries when the page is reloaded
+    alphabets_result.clear()
+    overall_result.clear()
+    piechart_data.clear()
     return render_template("alphabetical.html")
 
 
@@ -29,6 +35,7 @@ def upload_alphabets():
     if request.method == "POST":
         # Get the image data from the POST request
         img_data = request.form["img_data"]
+        letter_number = request.form["letter_number"]
 
         # Decode the image data
         img_data = img_data.split(",")[1]
@@ -39,7 +46,7 @@ def upload_alphabets():
         # Save the image to the designated folder using Pillow
         save_image_from_data(
             img_data, os.path.join(
-                alphabets_routes.config["UPLOAD_FOLDER"], filename)
+                alphabets_routes.config["UPLOAD_FOLDER"], filename), letter_number
         )
 
         return "Image saved successfully"
@@ -66,6 +73,42 @@ def get_result():
 
     # Return label and score in JSON format
     return jsonify({"label": label, "score": score})
+
+
+@alphabets_routes.route("/overall-alphabet-result", methods=["GET"])
+def get_overall_result():
+    overall_score = 0
+
+    # Calculate the overall score by summing up all the scores
+    for record in alphabets_result.values():
+        overall_score += record["score"]
+
+    # Calculate the predicted result based on the overall score
+    if overall_score >= 45:
+        predicted_result = "Hurrah! There is no Dyslexia Found"
+    else:
+        predicted_result = "Alas! There is dyslexia"
+
+    # Return the predicted result and overall score in JSON format
+    return jsonify({"Prediction": predicted_result, "overall_score": overall_score})
+
+
+@alphabets_routes.route("/alphabet-piechart-data", methods=["GET"])
+def get_piechart_data():
+    # Dictionary to store the count of each label
+    label_counts = {"Normal": 0, "Correlated": 0, "Reversal": 0}
+
+    # Iterate over the alphabets_result dictionary to count occurrences of each label
+    for result in alphabets_result.values():
+        label = result["label"]
+        if label in label_counts:
+            label_counts[label] += 1
+
+    # Prepare data for pie chart
+    piechart_data = [{"label": label, "count": count}
+                     for label, count in label_counts.items()]
+
+    return jsonify(piechart_data)
 
 
 def calculate_score(accuracy, label_index):
@@ -139,7 +182,7 @@ def calculate_score(accuracy, label_index):
 # Function to save the image from data using Pillow
 
 
-def save_image_from_data(img_data, filename):
+def save_image_from_data(img_data, filename, letter_number):
     # Decode the base64 image data and convert it to a Pillow image
     img_bytes = base64.b64decode(img_data)
     img_pil = Image.open(io.BytesIO(img_bytes))
@@ -155,7 +198,7 @@ def save_image_from_data(img_data, filename):
     score = calculate_score(accuracy, label_index)
 
     # Store the accuracy and label_index in the alphabets_result dictionary
-    alphabets_result[filename] = {
+    alphabets_result[letter_number] = {
         "label": label,
         "accuracy": float(accuracy),
         "score": score
