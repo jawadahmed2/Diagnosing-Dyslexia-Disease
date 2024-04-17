@@ -94,7 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch("/upload-words", {
             method: "POST",
             body: new URLSearchParams({
-                img_data: dataUrl
+                img_data: dataUrl,
+                letter_number: currentQuestionIndex
             }),
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -103,10 +104,26 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => {
                 if (response.ok) {
                     console.log("Image saved successfully");
-                    // Optionally, you can perform additional actions after image is saved
+                    // Fetch result after image is saved
+                    return fetch("/word-result");
                 } else {
                     console.error("Failed to save image");
                     // Optionally, handle error cases
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update UI with received result
+                const { label, score } = data;
+                document.getElementById("resultLabel").textContent = `Label: ${label}`;
+                document.getElementById("resultScore").textContent = `Score: ${score} / 10`;
+
+                // Check if this is the 10th question
+                if (currentQuestionIndex === 9) {
+                    // Fetch and display overall result
+                    fetchOverallResult();
+                    // Fetch and render pie chart
+                    fetchPieChartData();
                 }
             })
             .catch(error => {
@@ -114,6 +131,69 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Optionally, handle error cases
             });
     });
+
+    function fetchPieChartData() {
+        fetch("/word-piechart-data")
+            .then(response => response.json())
+            .then(data => {
+                // Extract labels and counts from the data
+                const labels = data.map(item => item.label);
+                const counts = data.map(item => item.count);
+
+                // Render the pie chart
+                renderPieChart(labels, counts);
+            })
+            .catch(error => {
+                console.error("Error fetching pie chart data:", error);
+                // Handle error
+            });
+    }
+
+    function renderPieChart(labels, counts) {
+        const ctx = document.getElementById("pieChart").getContext("2d");
+        const pieChart = new Chart(ctx, {
+            type: "doughnut",
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: counts,
+                    backgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56",
+                        // Add more colors if needed
+                    ]
+                }]
+            },
+            options: {
+                // Set width and height of the pie chart
+                responsive: true, // Disable responsiveness
+                maintainAspectRatio: false, // Allow chart to be resized
+                width: 600, // Set width to 200 pixels
+                height: 600, // Set height to 200 pixels
+                // Add other options as needed
+            }
+        });
+    }
+
+    function fetchOverallResult() {
+        fetch("/overall-word-result")
+            .then(response => response.json())
+            .then(data => {
+                // Update UI with overall result
+                const { Prediction, overall_score } = data;
+                const predictedResultElement = document.getElementById("predicted_result");
+                const predictedScoreElement = document.getElementById("predicted_score");
+
+                // Set text content
+                predictedResultElement.innerHTML = `Predicted Result: <span class="${Prediction === "Hurrah! There is no Dyslexia Found" ? 'green-text' : 'red-text'}">${Prediction}</span>`;
+                predictedScoreElement.innerHTML = `Predicted Score: <span class="${Prediction === "Hurrah! There is no Dyslexia Found" ? 'green-text' : 'red-text'}">${overall_score} / 100</span>`;
+            })
+            .catch(error => {
+                console.error("Error occurred:", error);
+                // Optionally, handle error cases
+            });
+    }
 
     function updateCounter() {
         const counterElement = document.getElementById("counter");

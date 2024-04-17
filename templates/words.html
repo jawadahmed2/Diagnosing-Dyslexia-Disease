@@ -31,6 +31,8 @@
     <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet" media="screen">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/words_style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-colorschemes"></script>
 </head>
 
 <body data-spy="scroll" data-target="#main-navbar" data-offset="71">
@@ -166,6 +168,13 @@
                     </div>
 
                 </div>
+                <div class="col-md-3">
+                    <h3 id="result">Result</h3>
+                    <h3 id="resultLabel"></h3> <br>
+                    <h3 id="resultScore"></h3>
+
+                </div>
+
             </div>
         </div>
     </section>
@@ -184,24 +193,23 @@
                     <!-- Section title end -->
                 </div>
             </div>
-
             <div class="row">
-                <div class="col-lg-4">
-                    <!-- Course Single Start -->
+                <!-- Course Single Start -->
+                <h3 id="predicted_result"></h3>
+                <!-- Course Single end -->
 
-                    <!-- Course Single end -->
-                </div>
+            </div>
+            <br>
+            <div class="row">
+                <!-- Course Single Start -->
+                <h3 id="predicted_score"></h3>
+                <!-- Course Single end -->
+            </div>
 
-                <div class="col-lg-4">
-                    <!-- Course Single Start -->
-
-                    <!-- Course Single End -->
-                </div>
-
-                <div class="col-lg-4">
-                    <!-- Course Single Start -->
-
-                    <!-- Course Single End -->
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="canvas-container">
+                    <!-- Add pie chart here -->
+                    <canvas id="pieChart"></canvas>
                 </div>
             </div>
         </div>
